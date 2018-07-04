@@ -1,8 +1,23 @@
-import React from 'react';
+import React from 'react'; // eslint-disable-line no-unused-vars
 import ReactDOM from 'react-dom';
-import './index.css';
+import { Provider } from 'react-redux';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import configureStore from './store/configureStore';
 import App from './App';
-import registerServiceWorker from './registerServiceWorker';
+import Login from './containers/Login';
+import BackOffice from './containers/BackOffice';
 
-ReactDOM.render(<App />, document.getElementById('root'));
-registerServiceWorker();
+const store = configureStore();
+
+ReactDOM.render(
+  <Provider store={store}>
+    <Router>
+      <Switch>
+      <Route exact path="/" component={App} />
+      <Route path="/login" component={Login} />
+      <Route path="/bo" component={BackOffice} />
+      </Switch>
+    </Router>
+  </Provider>,
+  document.getElementById('root'),
+);
