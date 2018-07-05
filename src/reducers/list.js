@@ -1,7 +1,8 @@
 import {
   PIZZAS_REQUEST,
   PIZZAS_SUCCESS,
-  PIZZAS_FAILURE } from '../actions/pizzas/list';
+  PIZZAS_FAILURE,
+} from '../actions/pizzas/list';
 
 const initialState = {
   result: [],

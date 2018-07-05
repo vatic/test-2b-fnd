@@ -1,17 +1,15 @@
-import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
-import thunkMiddleware from 'redux-thunk';
+import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import { createLogger } from 'redux-logger';
+import thunkMiddleware from 'redux-thunk';
 import fetchMiddleware from '../middlewares/fetch';
-
-// import auth, { phones } from '../reducers';
-import { pizzas } from '../reducers';
+import auth, { pizzas } from '../reducers';
 
 const logger = createLogger();
 
 const rootReducer = combineReducers(
   {
     pizzas,
-    // auth,
+    auth,
   },
 );
 
@@ -31,4 +29,3 @@ export default function configureStore() {
   }
   return store;
 }
-

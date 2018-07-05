@@ -65,7 +65,7 @@ const fetchMiddleware = store => next => (action) => {
             const { currentOffset, total } = store.getState().phones.list;
             if (action.API_CALL.method === 'DELETE') {
               return store.dispatch(a(currentOffset));
-            } else if (action.API_CALL.method === 'POST') {
+            } if (action.API_CALL.method === 'POST') {
               const numOfPages = Math.floor(total / 10);
               return store.dispatch(a(numOfPages * 10));
             }

@@ -13,9 +13,9 @@ ReactDOM.render(
   <Provider store={store}>
     <Router>
       <Switch>
-      <Route exact path="/" component={App} />
-      <Route path="/login" component={Login} />
-      <Route path="/bo" component={BackOffice} />
+        <Route exact path="/" component={App} />
+        <Route path="/login" component={Login} />
+        <Route path="/bo" component={BackOffice} />
       </Switch>
     </Router>
   </Provider>,

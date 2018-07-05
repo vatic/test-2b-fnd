@@ -1,7 +1,4 @@
-import {
-  ADD_PIZZA_REQUEST,
-  ADD_PIZZA_SUCCESS,
-  ADD_PIZZA_FAILURE } from '../actions/phones//backoffice';
+import { ADD_PIZZA_FAILURE, ADD_PIZZA_REQUEST, ADD_PIZZA_SUCCESS } from '../actions/pizzas/list';
 
 const initialState = {
   status: false,
