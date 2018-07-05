@@ -26,7 +26,7 @@ export default class TopMenu extends React.Component {
               <Menu.Item position="left">
                 <Button primary>
                   <Link to="/" style={{ color: '#fff' }}>
-                    Home
+                    Конструктор
                   </Link>
                 </Button>
               </Menu.Item>
@@ -36,7 +36,7 @@ export default class TopMenu extends React.Component {
                 <Menu.Item>
                   <Button primary>
                     <Link to="/bo" style={{ color: '#fff' }}>
-                      BackOffice
+                      Список пицц
                     </Link>
                   </Button>
                 </Menu.Item>
@@ -45,15 +45,15 @@ export default class TopMenu extends React.Component {
             <Menu.Item position="right">
               {accessToken.length > 0 ? (
                 <Button primary onClick={() => logout(accessToken)}>
-                  Logout
+                  Выйти
                 </Button>
               ) : (
-                <Button primary>
-                  <Link to="/login" style={{ color: '#fff' }}>
+                  <Button primary>
+                    <Link to="/login" style={{ color: '#fff' }}>
                       Login
                   </Link>
-                </Button>
-              )}
+                  </Button>
+                )}
             </Menu.Item>
           </Menu>
         </Grid.Row>

@@ -1,6 +1,7 @@
 import React from 'react';
 import 'semantic-ui-css/semantic.min.css';
 import { Container, Header } from 'semantic-ui-react';
+import Constructor from './components/Constructor';
 import TopMenu from './containers/TopMenu';
 import './index.css';
 // import TopMenu from './containers/TopMenu';
@@ -12,9 +13,7 @@ const App = props => (
     <Header as="h1" color="grey">
       Simple Pizza Constructor
     </Header>
-    <p>
-      Hello
-    </p>
+    <Constructor />
     {/* <SearchPhone /> */}
   </Container>
 );
