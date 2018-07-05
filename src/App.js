@@ -1,11 +1,9 @@
 import React from 'react';
 import 'semantic-ui-css/semantic.min.css';
 import { Container, Header } from 'semantic-ui-react';
-import Constructor from './components/Constructor';
+import Constructor from './containers/Constructor';
 import TopMenu from './containers/TopMenu';
 import './index.css';
-// import TopMenu from './containers/TopMenu';
-// import SearchPhone from './containers/SearchPhone';
 
 const App = props => (
   <Container textAlign="center">
@@ -14,7 +12,6 @@ const App = props => (
       Simple Pizza Constructor
     </Header>
     <Constructor />
-    {/* <SearchPhone /> */}
   </Container>
 );
 

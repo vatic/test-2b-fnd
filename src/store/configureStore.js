@@ -1,14 +1,17 @@
-import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
+import {
+ applyMiddleware, combineReducers, compose, createStore 
+} from 'redux';
 import { createLogger } from 'redux-logger';
 import thunkMiddleware from 'redux-thunk';
 import fetchMiddleware from '../middlewares/fetch';
-import auth, { pizzas } from '../reducers';
+import auth, { ingredients, pizzas } from '../reducers';
 
 const logger = createLogger();
 
 const rootReducer = combineReducers(
   {
     pizzas,
+    ingredients,
     auth,
   },
 );

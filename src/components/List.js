@@ -1,7 +1,5 @@
 import React from 'react';
-import {
- Button, Container, Grid, Header, Icon, Menu, Table 
-} from 'semantic-ui-react';
+import { Button, Container, Grid, Header, Icon, Menu, Table } from 'semantic-ui-react';
 import TopMenu from '../containers/TopMenu';
 import InfoMessage from './InfoMessage';
 
@@ -94,7 +92,6 @@ export default class BackOffice extends React.Component {
 
   render() {
     const { total } = this.props.list;
-    const { addPhone } = this.props;
     return (
       <Container>
         <TopMenu history={this.props.history} />
