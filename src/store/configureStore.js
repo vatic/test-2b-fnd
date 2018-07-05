@@ -4,7 +4,7 @@ import {
 import { createLogger } from 'redux-logger';
 import thunkMiddleware from 'redux-thunk';
 import fetchMiddleware from '../middlewares/fetch';
-import auth, { ingredients, pizzas } from '../reducers';
+import auth, { ingredients, pizzas, types } from '../reducers';
 
 const logger = createLogger();
 
@@ -12,6 +12,7 @@ const rootReducer = combineReducers(
   {
     pizzas,
     ingredients,
+    types,
     auth,
   },
 );

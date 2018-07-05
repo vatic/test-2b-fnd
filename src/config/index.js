@@ -10,6 +10,7 @@ const config = {
     LOGOUT: `${API_ROOT_NODE}/logout`,
     PIZZAS: `${API_ROOT_NODE}/pizzas`,
     INGREDIENTS: `${API_ROOT_NODE}/ingredients`,
+    TYPES: `${API_ROOT_NODE}/types`,
   },
 };
 
