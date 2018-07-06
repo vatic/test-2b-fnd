@@ -19,6 +19,15 @@ body {
   cursor: pointer;
 }
 
+.List-enabledPizza, .List-disabledPizza {
+  min-height: 70px;
+  height: 70px;
+}
+
+.List-enabledPizza, .List-disabledPizza td {
+  font-size: 0.8em;
+}
+
 .List-enabledPizza {
   font-weight: 800;
 }

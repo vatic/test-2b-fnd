@@ -1,7 +1,5 @@
 import React from 'react';
-import {
- Button, Container, Grid, Header, Icon, Menu, Table 
-} from 'semantic-ui-react';
+import { Button, Container, Grid, Header, Icon, Menu, Table } from 'semantic-ui-react';
 import TopMenu from '../containers/TopMenu';
 import InfoMessage from './InfoMessage';
 
@@ -33,6 +31,7 @@ export default class BackOffice extends React.Component {
         as="a"
         onClick={(e, { children }) => this.props.getPizzas((children - 1) * 10)}
         key={`menu_item_${i}`}
+        active={Math.ceil(currentOffset/10) === i}
       >
         {i + 1}
 
@@ -72,7 +71,7 @@ export default class BackOffice extends React.Component {
         <Table.Cell>
           {p.name}
         </Table.Cell>
-        <Table.Cell>
+        <Table.Cell className="List-Column-Ingredients">
           {p.ingredients}
         </Table.Cell>
         <Table.Cell>
