@@ -49,10 +49,10 @@ export default class TopMenu extends React.Component {
                 </Button>
               ) : (
                 <Button primary>
-                    <Link to="/login" style={{ color: '#fff' }}>
-                      Войти
-                    </Link>
-                  </Button>
+                  <Link to="/login" style={{ color: '#fff' }}>
+                    Войти
+                  </Link>
+                </Button>
               )}
             </Menu.Item>
           </Menu>
