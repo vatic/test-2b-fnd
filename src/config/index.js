@@ -1,5 +1,5 @@
 const API_ROOT_NODE = (process.env.NODE_ENV === 'production')
-  ? 'https://2b-test-backend.herokuapp.com'
+  ? 'https://test-2b-bnd.herokuapp.com'
   : `http://${window.location.hostname}:8080`;
 
 const config = {
