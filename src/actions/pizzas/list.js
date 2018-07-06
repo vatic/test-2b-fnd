@@ -35,7 +35,7 @@ export const addPizza = pizza => ({
     types: [ADD_PIZZA_REQUEST, ADD_PIZZA_SUCCESS, ADD_PIZZA_FAILURE],
     data: JSON.stringify(pizza),
     headers: { Authorization: `Bearer ${getToken().run()}` },
-    // nextActions: [getPizzas, getTotal],
+    nextActions: [getPizzas],
   },
 });
 

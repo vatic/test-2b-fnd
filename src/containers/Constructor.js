@@ -8,8 +8,10 @@ import Constructor from '../components/Constructor';
 
 const mapStateToProps = (state) => {
   const { list } = state.ingredients;
+  const { add } = state.pizzas;
   const typesList = state.types.list;
   return {
+    add,
     list,
     typesList,
   };

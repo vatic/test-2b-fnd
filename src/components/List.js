@@ -1,5 +1,7 @@
 import React from 'react';
-import { Button, Container, Grid, Header, Icon, Menu, Table } from 'semantic-ui-react';
+import {
+ Button, Container, Grid, Header, Icon, Menu, Table 
+} from 'semantic-ui-react';
 import TopMenu from '../containers/TopMenu';
 import InfoMessage from './InfoMessage';
 
@@ -76,7 +78,7 @@ export default class BackOffice extends React.Component {
           <Button
             size="mini"
             color={p.activity === 1 ? 'red' : 'green'}
-            onClick={() => (p.activity === 1) ? disablePizza(p.id) : enablePizza(p.id)}
+            onClick={() => ((p.activity === 1) ? disablePizza(p.id) : enablePizza(p.id))}
           >
             {p.activity === 1 ? 'Disable' : 'Enable'}
           </Button>
@@ -98,7 +100,7 @@ export default class BackOffice extends React.Component {
   }
 
   render() {
-    const { total } = this.props.list;
+    const total = this.props.list.result.length;
     return (
       <Container>
         <TopMenu history={this.props.history} />

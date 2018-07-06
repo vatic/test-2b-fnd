@@ -1,8 +1,7 @@
 import React from 'react';
 import 'semantic-ui-css/semantic.min.css';
-import {
-  Button, Card, Grid, Input, Segment,
-} from 'semantic-ui-react';
+import { Button, Card, Grid, Input, Segment } from 'semantic-ui-react';
+import InfoMessage from './InfoMessage';
 
 export default class Constructor extends React.Component {
   constructor(props) {
@@ -12,12 +11,35 @@ export default class Constructor extends React.Component {
       currentPizza: { name: '', ingredients: [] },
     };
     this.handleNameChange = this.handleNameChange.bind(this);
+    this.handleIngredientClick = this.handleIngredientClick.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleTypeChange = this.handleTypeChange.bind(this);
   }
 
   componentWillMount() {
     this.colors = ['red', 'orange', 'yellow', 'olive', 'green', 'teal', 'blue', 'violet'];
     this.props.getIngredients(0);
     this.props.getTypes();
+  }
+
+  componentWillUnmount() {
+    this.setState = {
+      currentTypeId: 1,
+      currentPizza: { name: '', ingredients: [] },
+    };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.dir(nextProps.add.status);
+    console.dir(this.props.add.status);
+    const { status } = nextProps.add;
+    if (!this.props.add.status && status) {
+      console.log('must change');
+      this.setState = {
+        currentTypeId: 1,
+        currentPizza: { name: '', ingredients: [] },
+      };
+    }
   }
 
   groupByKey(arr, key) {
@@ -30,7 +52,6 @@ export default class Constructor extends React.Component {
   }
 
   handleNameChange(event) {
-    // console.dir(event.target.value);
     this.setState({ currentPizza: { name: event.target.value, ingredients: this.state.currentPizza.ingredients } });
   }
 
@@ -41,8 +62,11 @@ export default class Constructor extends React.Component {
 
   handleSubmit() {
     const forSubmit = { name: this.state.currentPizza.name, ids: this.state.currentPizza.ingredients.map(i => i.id) };
-    console.log(forSubmit);
     this.props.addPizza(forSubmit);
+    this.setState = {
+      currentTypeId: 1,
+      currentPizza: { name: '', ingredients: [] },
+    };
   }
 
   renderTypes(types) {
@@ -70,8 +94,21 @@ export default class Constructor extends React.Component {
     ));
   }
 
+  renderMessage(key) {
+    const { status, msg, errorMsg } = this.props[key];
+    const color = status ? 'green' : 'red';
+    const text = status ? msg : errorMsg;
+    if (text !== '') {
+      return (
+        <InfoMessage color={color} header={text} timeout={5000} />
+      );
+    }
+    return null;
+  }
+
 
   render() {
+    console.log(this.state);
     const types = this.props.typesList.result;
     const ingredients = this.groupByKey(this.props.list.result, 'type_id');
     let selectedIngredients = [];
@@ -112,6 +149,7 @@ export default class Constructor extends React.Component {
               >
                 Сохранить
               </Button>
+              {this.renderMessage('add')}
             </Grid.Column>
           </Grid.Row>
         </Grid>

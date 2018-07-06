@@ -23,7 +23,7 @@ export default function addPizza(state = initialState, action) {
         error: null,
         errorMsg: '',
         status: true,
-        msg: 'Pizza added succesfully',
+        msg: 'Пицца успешно сохранена',
       });
     case ADD_PIZZA_FAILURE:
       return Object.assign({}, state, {
@@ -31,7 +31,7 @@ export default function addPizza(state = initialState, action) {
         error: action.payload.error,
         status: false,
         msg: '',
-        errorMsg: action.payload.error.status === 422 ? 'Pizza not valid' : '',
+        errorMsg: action.payload.error.status === 422 ? 'Неверные параметры пиццы' : '',
       });
     default:
       return state;
