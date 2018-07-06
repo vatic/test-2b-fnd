@@ -8,7 +8,7 @@ import './index.css';
 const App = props => (
   <Container textAlign="center">
     <TopMenu history={props.history} />
-    <Constructor />
+    <Constructor history={props.history} />
   </Container>
 );
 

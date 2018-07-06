@@ -10,6 +10,7 @@ export default class BackOffice extends React.Component {
   componentWillMount() {
     this.setState({ currentAddInputText: '' });
     this.props.getPizzas(0);
+    this.props.getTotal();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -100,7 +101,7 @@ export default class BackOffice extends React.Component {
   }
 
   render() {
-    const total = this.props.list.result.length;
+    const { total } = this.props.list;
     return (
       <Container>
         <TopMenu history={this.props.history} />

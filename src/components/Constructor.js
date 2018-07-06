@@ -39,6 +39,7 @@ export default class Constructor extends React.Component {
         currentTypeId: 1,
         currentPizza: { name: '', ingredients: [] },
       };
+      this.props.history.push('/bo');
     }
   }
 
@@ -109,6 +110,7 @@ export default class Constructor extends React.Component {
 
   render() {
     console.log(this.state);
+    console.log(this.props);
     const types = this.props.typesList.result;
     const ingredients = this.groupByKey(this.props.list.result, 'type_id');
     let selectedIngredients = [];

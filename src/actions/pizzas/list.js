@@ -5,6 +5,10 @@ export const PIZZAS_REQUEST = 'PIZZAS_REQUEST';
 export const PIZZAS_SUCCESS = 'PIZZAS_SUCCESS';
 export const PIZZAS_FAILURE = 'PIZZAS_FAILURE';
 
+export const TOTAL_REQUEST = 'TOTAL_REQUEST';
+export const TOTAL_SUCCESS = 'TOTAL_SUCCESS';
+export const TOTAL_FAILURE = 'TOTAL_FAILURE';
+
 export const ADD_PIZZA_REQUEST = 'ADD_PIZZA_REQUEST';
 export const ADD_PIZZA_SUCCESS = 'ADD_PIZZA_SUCCESS';
 export const ADD_PIZZA_FAILURE = 'ADD_PIZZA_FAILURE';
@@ -27,6 +31,15 @@ export const getPizzas = offset => ({
   extraParams: offset,
 });
 
+export const getTotal = () => ({
+  API_CALL: {
+    endpoint: config.ENDPOINTS.TOTAL,
+    method: 'GET',
+    types: [TOTAL_REQUEST, TOTAL_SUCCESS, TOTAL_FAILURE],
+    headers: { Authorization: `Bearer ${getToken().run()}` },
+  },
+});
+
 
 export const addPizza = pizza => ({
   API_CALL: {
@@ -35,7 +48,7 @@ export const addPizza = pizza => ({
     types: [ADD_PIZZA_REQUEST, ADD_PIZZA_SUCCESS, ADD_PIZZA_FAILURE],
     data: JSON.stringify(pizza),
     headers: { Authorization: `Bearer ${getToken().run()}` },
-    nextActions: [getPizzas],
+    // nextActions: [getPizzas],
   },
 });
 
