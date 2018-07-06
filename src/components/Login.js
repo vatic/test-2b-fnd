@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-  Form, Button, Container, Grid, Header,
-} from 'semantic-ui-react';
+import { Button, Container, Form, Grid, Header } from 'semantic-ui-react';
 
 export default class Login extends React.Component {
   componentWillMount() {
