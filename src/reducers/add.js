@@ -8,7 +8,7 @@ const initialState = {
   errorMsg: '',
 };
 
-export default function addPhone(state = initialState, action) {
+export default function addPizza(state = initialState, action) {
   switch (action.type) {
     case ADD_PIZZA_REQUEST:
       return Object.assign({}, state, {
@@ -23,7 +23,7 @@ export default function addPhone(state = initialState, action) {
         error: null,
         errorMsg: '',
         status: true,
-        msg: 'Phone added succesfully',
+        msg: 'Pizza added succesfully',
       });
     case ADD_PIZZA_FAILURE:
       return Object.assign({}, state, {
@@ -31,7 +31,7 @@ export default function addPhone(state = initialState, action) {
         error: action.payload.error,
         status: false,
         msg: '',
-        errorMsg: action.payload.error.status === 422 ? 'Phone not valid' : '',
+        errorMsg: action.payload.error.status === 422 ? 'Pizza not valid' : '',
       });
     default:
       return state;

@@ -1,5 +1,7 @@
 import React from 'react';
-import { Form, Button, Container, Grid, Header } from 'semantic-ui-react';
+import {
+  Form, Button, Container, Grid, Header,
+} from 'semantic-ui-react';
 
 export default class Login extends React.Component {
   componentWillMount() {
@@ -27,17 +29,21 @@ export default class Login extends React.Component {
     const { username, password } = this.state;
     return (
       <Container>
-        <Grid verticalAlign='middle' textAlign='center' centered={true} columns={3}>
+        <Grid verticalAlign="middle" textAlign="center" centered columns={3}>
           <Grid.Column>
-            <Header as='h2' color='grey'>Login to your account</Header>
+            <Header as="h2" color="grey">
+Login to your account
+            </Header>
             <Form onSubmit={this.handleSubmit}>
               <Form.Field>
-                <Form.Input placeholder='Username' name='username' value={username} onChange={this.handleChange} />
+                <Form.Input placeholder="Username" name="username" value={username} onChange={this.handleChange} />
               </Form.Field>
               <Form.Field>
-                <Form.Input placeholder='Password' name='password' type='password' value={password} onChange={this.handleChange} />
+                <Form.Input placeholder="Password" name="password" type="password" value={password} onChange={this.handleChange} />
               </Form.Field>
-              <Button type='submit'>Submit</Button>
+              <Button type="submit">
+Submit
+              </Button>
             </Form>
           </Grid.Column>
         </Grid>

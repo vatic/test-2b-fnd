@@ -62,7 +62,7 @@ const fetchMiddleware = store => next => (action) => {
       if (nextActions && nextActions.length > 0) {
         nextActions.map((a, i) => {
           if (i === 0) {
-            const { currentOffset, total } = store.getState().phones.list;
+            const { currentOffset, total } = store.getState().pizzas.list;
             if (action.API_CALL.method === 'DELETE') {
               return store.dispatch(a(currentOffset));
             } if (action.API_CALL.method === 'POST') {

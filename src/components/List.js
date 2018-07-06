@@ -60,9 +60,12 @@ export default class BackOffice extends React.Component {
 
   renderRow() {
     const { result } = this.props.list;
-    const { delPhone } = this.props;
+    const { enablePizza, disablePizza } = this.props;
     return result.map(p => (
-      <Table.Row key={p.id}>
+      <Table.Row
+        key={p.id}
+        className={(p.activity === 1) ? 'List-enabledPizza' : 'List-disabledPizza'}
+      >
         <Table.Cell>
           {p.name}
         </Table.Cell>
@@ -70,8 +73,12 @@ export default class BackOffice extends React.Component {
           {p.ingredients}
         </Table.Cell>
         <Table.Cell>
-          <Button size="mini" color="red" onClick={() => delPhone(p.phone)}>
-            Delete
+          <Button
+            size="mini"
+            color={p.activity === 1 ? 'red' : 'green'}
+            onClick={() => (p.activity === 1) ? disablePizza(p.id) : enablePizza(p.id)}
+          >
+            {p.activity === 1 ? 'Disable' : 'Enable'}
           </Button>
         </Table.Cell>
       </Table.Row>
@@ -97,20 +104,19 @@ export default class BackOffice extends React.Component {
         <TopMenu history={this.props.history} />
         <Grid centered>
           <Grid.Row>
-            <Grid.Column width={3} />
-            <Grid.Column width={10}>
+            <Grid.Column width={16}>
               <Table celled columns={4} textAlign="center">
                 <Table.Header>
                   <Table.Row>
                     <Table.HeaderCell>
                       Наименование
-                                        </Table.HeaderCell>
+                    </Table.HeaderCell>
                     <Table.HeaderCell>
                       Ингредиенты
-                                        </Table.HeaderCell>
+                    </Table.HeaderCell>
                     <Table.HeaderCell>
-                      Actions
-                                        </Table.HeaderCell>
+                      Действия
+                    </Table.HeaderCell>
                   </Table.Row>
                 </Table.Header>
 
@@ -122,7 +128,7 @@ export default class BackOffice extends React.Component {
                   <Table.Row>
                     <Table.HeaderCell>
                       <Header as="h3" color="grey">
-                        Total phones:
+                        Всего:
                         {' '}
                         {total}
                       </Header>

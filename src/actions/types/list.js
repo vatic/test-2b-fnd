@@ -7,11 +7,11 @@ export const TYPES_FAILURE = 'TYPES_FAILURE';
 
 
 export const getTypes = offset => ({
-    API_CALL: {
-        endpoint: `${config.ENDPOINTS.TYPES}?offset=${offset || 0}`,
-        method: 'GET',
-        types: [TYPES_REQUEST, TYPES_SUCCESS, TYPES_FAILURE],
-        headers: { Authorization: `Bearer ${getToken().run()}` },
-    },
-    extraParams: offset,
+  API_CALL: {
+    endpoint: `${config.ENDPOINTS.TYPES}?offset=${offset || 0}`,
+    method: 'GET',
+    types: [TYPES_REQUEST, TYPES_SUCCESS, TYPES_FAILURE],
+    headers: { Authorization: `Bearer ${getToken().run()}` },
+  },
+  extraParams: offset,
 });

@@ -7,17 +7,17 @@ import Constructor from '../components/Constructor';
 
 
 const mapStateToProps = (state) => {
-    const { list } = state.ingredients;
-    const typesList = state.types.list
-    return {
-        list,
-        typesList,
-    };
+  const { list } = state.ingredients;
+  const typesList = state.types.list;
+  return {
+    list,
+    typesList,
+  };
 };
 
 export default connect(mapStateToProps, {
-    getIngredients,
-    getTypes,
-    addPizza,
-    deleteToken,
+  getIngredients,
+  getTypes,
+  addPizza,
+  deleteToken,
 })(Constructor);

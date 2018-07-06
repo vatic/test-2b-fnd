@@ -4,7 +4,8 @@ import {
   LOGIN_FAILURE,
   LOGOUT_REQUEST,
   LOGOUT_SUCCESS,
-  LOGOUT_FAILURE } from '../actions/auth/auth';
+  LOGOUT_FAILURE,
+} from '../actions/auth/auth';
 
 const initialState = {
   loggedIn: localStorage.token !== undefined || localStorage.token !== '',

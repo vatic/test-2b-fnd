@@ -1,6 +1,8 @@
 import React from 'react';
 import 'semantic-ui-css/semantic.min.css';
-import { Button, Card, Grid, Input, Segment } from 'semantic-ui-react';
+import {
+  Button, Card, Grid, Input, Segment,
+} from 'semantic-ui-react';
 
 export default class Constructor extends React.Component {
   constructor(props) {

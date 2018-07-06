@@ -14,6 +14,16 @@ body {
 .Constructor-NewPizzaWrapper {
   height: 400px;
 }
+
 .Constructor-ingredient {
   cursor: pointer;
+}
+
+.List-enabledPizza {
+  font-weight: 800;
+}
+
+.List-disabledPizza {
+  text-decoration: line-through;
+  font-weight: 100;
 }

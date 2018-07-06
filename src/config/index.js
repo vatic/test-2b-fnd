@@ -9,6 +9,8 @@ const config = {
     LOGIN: `${API_ROOT_NODE}/login`,
     LOGOUT: `${API_ROOT_NODE}/logout`,
     PIZZAS: `${API_ROOT_NODE}/pizzas`,
+    PIZZA: id => `${API_ROOT_NODE}/pizzas/${id}`,
+    PIZZA_ENABLE: id => `${API_ROOT_NODE}/pizzas/${id}/enable`,
     INGREDIENTS: `${API_ROOT_NODE}/ingredients`,
     TYPES: `${API_ROOT_NODE}/types`,
   },
