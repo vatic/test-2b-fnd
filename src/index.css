@@ -7,3 +7,13 @@ body {
 .button.Constructor-typeBtn {
   margin: 5px;
 }
+.Constructor-wrapper {
+  height: 600px;
+}
+
+.Constructor-NewPizzaWrapper {
+  height: 400px;
+}
+.Constructor-ingredient {
+  cursor: pointer;
+}
