@@ -1,8 +1,6 @@
 import React from 'react';
 import 'semantic-ui-css/semantic.min.css';
-import {
- Button, Card, Grid, Input, Segment 
-} from 'semantic-ui-react';
+import { Button, Card, Grid, Input, Segment } from 'semantic-ui-react';
 
 export default class Constructor extends React.Component {
   constructor(props) {
@@ -36,8 +34,13 @@ export default class Constructor extends React.Component {
 
   handleIngredientClick(ingredient) {
     const current = this.state.currentPizza;
-    console.log(current);
     this.setState({ currentPizza: { name: current.name, ingredients: [...current.ingredients, ingredient] } });
+  }
+
+  handleSubmit() {
+    const forSubmit = { name: this.state.currentPizza.name, ids: this.state.currentPizza.ingredients.map(i => i.id) };
+    console.log(forSubmit);
+    this.props.addPizza(forSubmit);
   }
 
   renderTypes(types) {
@@ -92,11 +95,21 @@ export default class Constructor extends React.Component {
                 value={this.state.currentPizza.name}
                 onChange={this.handleNameChange}
               />
+              <Segment.Group>
+                {this.renderIngredients(this.state.currentPizza.ingredients)}
+              </Segment.Group>
               <Card
                 header={this.state.currentPizza.name}
                 description={`Состав: ${this.state.currentPizza.ingredients.map(i => i.name).join(', ')}`}
                 meta="320г."
               />
+              <Button
+                color="red"
+                disabled={!(this.state.currentPizza.name && this.state.currentPizza.ingredients.length > 0)}
+                onClick={() => this.handleSubmit()}
+              >
+                Сохранить
+              </Button>
             </Grid.Column>
           </Grid.Row>
         </Grid>

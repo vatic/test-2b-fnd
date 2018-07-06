@@ -20,12 +20,12 @@ export const getPizzas = offset => ({
 });
 
 
-export const addPizza = phone => ({
+export const addPizza = pizza => ({
   API_CALL: {
     endpoint: config.ENDPOINTS.PIZZAS,
     method: 'POST',
     types: [ADD_PIZZA_REQUEST, ADD_PIZZA_SUCCESS, ADD_PIZZA_FAILURE],
-    data: JSON.stringify({ phone }),
+    data: JSON.stringify(pizza),
     headers: { Authorization: `Bearer ${getToken().run()}` },
     // nextActions: [getPhones, getTotal],
   },
