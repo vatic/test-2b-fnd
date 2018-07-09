@@ -17,32 +17,39 @@ export default class TopMenu extends React.Component {
   }
 
   render() {
-    const { accessToken, logout } = this.props;
+    const { accessToken, loggedIn, logout } = this.props;
     return (
       <Grid centered>
         <Grid.Row>
           <Menu>
-            <Grid.Column width={3}>
-              <Menu.Item position="left">
+            <Grid.Column width={4}>
+              <Menu.Item>
                 <Button primary>
                   <Link to="/" style={{ color: '#fff' }}>
                     Конструктор
                   </Link>
                 </Button>
               </Menu.Item>
+              <Menu.Item>
+                <Button primary>
+                  <Link to="/list" style={{ color: '#fff' }}>
+                    Мои пиццы
+                  </Link>
+                </Button>
+              </Menu.Item>
             </Grid.Column>
-            {accessToken.length > 0
+            {loggedIn
               && (
                 <Menu.Item>
                   <Button primary>
                     <Link to="/bo" style={{ color: '#fff' }}>
-                      Список пицц
+                      Админка
                     </Link>
                   </Button>
                 </Menu.Item>
               )
             }
-            <Menu.Item position="right">
+            <Menu.Item>
               {accessToken.length > 0 ? (
                 <Button primary onClick={() => logout(accessToken)}>
                   Выйти

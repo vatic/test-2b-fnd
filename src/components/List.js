@@ -1,15 +1,19 @@
 import React from 'react';
-import {
- Button, Grid, Header, Icon, Menu, Table 
-} from 'semantic-ui-react';
+import { Button, Grid, Header, Icon, Menu, Table } from 'semantic-ui-react';
 
 const renderPagination = (props) => {
-  console.dir(props);
-  const { currentOffset, total } = props.list;
-  const numOfPages = total % 10 === 0 ? Math.floor(total / 10) : Math.floor(total / 10) + 1;
+  const { currentOffset, total, myTotal } = props.list;
+  const { admin, getPizzas } = props;
+  let len = 0;
+  if (admin) {
+    len = total;
+  } else {
+    len = myTotal;
+  }
+  const numOfPages = len % 10 === 0 ? Math.floor(len / 10) : Math.floor(len / 10) + 1;
   const tempAry = [...Array(numOfPages).keys()];
   const prev = (currentOffset - 10) > 0 ? (currentOffset - 10) : 0;
-  const next = (currentOffset + 10) < total ? (currentOffset + 10) : currentOffset;
+  const next = (currentOffset + 10) < len ? (currentOffset + 10) : currentOffset;
   const pageItems = tempAry.map((item, i) => (
     <Menu.Item
       as="a"
@@ -24,7 +28,7 @@ const renderPagination = (props) => {
   return (
     <Menu floated="right" pagination>
       <Menu.Item
-        onClick={() => this.props.getPizzas(prev)}
+        onClick={() => getPizzas(prev)}
         disabled={currentOffset === 0}
         as="a"
         icon
@@ -33,7 +37,7 @@ const renderPagination = (props) => {
       </Menu.Item>
       {pageItems}
       <Menu.Item
-        onClick={() => this.props.getPizzas(next)}
+        onClick={() => getPizzas(next)}
         disabled={currentOffset === next}
         as="a"
         icon
@@ -63,9 +67,15 @@ const renderActions = (props, p) => {
 };
 
 const renderRows = (props) => {
-  const { result } = props.list;
+  const { result, myResult, admin } = props.list;
   const { enablePizza, disablePizza } = props;
-  return result.map(p => (
+  let pizzas = [];
+  if (admin) {
+    pizzas = result;
+  } else {
+    pizzas = myResult;
+  }
+  return pizzas.map(p => (
     <Table.Row
       key={p.id}
       className={(p.activity === 1) ? 'List-enabledPizza' : 'List-disabledPizza'}
@@ -105,22 +115,30 @@ const tableHeader = admin => (
   </Table.Header>
 );
 
-const tableFooter = props => (
-  <Table.Footer>
-    <Table.Row>
-      <Table.HeaderCell>
-          <Header as="h3" color="grey">
-            Всего:
-              {' '}
-              {props.total}
-            </Header>
-        </Table.HeaderCell>
-      <Table.HeaderCell colSpan="3">
-          {renderPagination(props)}
-        </Table.HeaderCell>
-    </Table.Row>
-  </Table.Footer>
-);
+const tableFooter = (props) => {
+  const { admin, total, myTotal } = props.list;
+  let len = 0;
+  if (admin) {
+    len = total;
+  } else {
+    len = myTotal;
+  }
+  return (
+    <Table.Footer>
+      <Table.Row>
+        <Table.HeaderCell>
+            <Header as="h3" color="grey">
+              Всего:
+                {' '}
+                {len}
+              </Header>
+          </Table.HeaderCell>
+        <Table.HeaderCell colSpan="3">
+            {renderPagination(props)}
+          </Table.HeaderCell>
+      </Table.Row>
+    </Table.Footer>
+)};
 
 
 const List = props => (

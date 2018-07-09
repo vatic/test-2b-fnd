@@ -1,8 +1,6 @@
 import React from 'react';
 import 'semantic-ui-css/semantic.min.css';
-import {
- Button, Card, Grid, Input, Segment 
-} from 'semantic-ui-react';
+import { Button, Card, Grid, Input, Segment } from 'semantic-ui-react';
 import InfoMessage from './InfoMessage';
 
 export default class Constructor extends React.Component {
@@ -67,14 +65,11 @@ export default class Constructor extends React.Component {
   }
 
   handleSubmit() {
-    const { currentPizza } = this.stete;
-    const { addPizza } = this.props;
+    const { currentPizza } = this.state;
+    const { addPizza, history } = this.props;
     const forSubmit = { name: currentPizza.name, ids: currentPizza.ingredients.map(i => i.id) };
     addPizza(forSubmit);
-    this.setState = {
-      currentTypeId: 1,
-      currentPizza: { name: '', ingredients: [] },
-    };
+    history.push('/list');
   }
 
   renderTypes(types) {

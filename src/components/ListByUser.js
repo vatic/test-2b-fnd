@@ -25,10 +25,7 @@ export default class BackOffice extends React.Component {
       <Container>
         <TopMenu history={this.props.history} />
         <List
-          admin
           list={this.props.list}
-          enablePizza={this.props.enablePizza}
-          disablePizza={this.props.disablePizza}
         />
       </Container>
     );
