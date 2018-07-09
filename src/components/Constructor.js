@@ -1,8 +1,6 @@
 import React from 'react';
 import 'semantic-ui-css/semantic.min.css';
-import {
- Button, Card, Grid, Input, Segment 
-} from 'semantic-ui-react';
+import { Button, Card, Grid, Input, Segment } from 'semantic-ui-react';
 import InfoMessage from './InfoMessage';
 
 export default class Constructor extends React.Component {
@@ -122,9 +120,11 @@ export default class Constructor extends React.Component {
 
   renderCurrentIngredients(ingredients) {
     return ingredients.map(ingt => (
-      <Segment key={ingt.id} className="Constructor-ingredient">
-        {ingt.name}
+      <Segment key={ingt.id} className="Constructor-currentIngredient">
+        <p>{ingt.name}</p>
         <Button
+          color="red"
+          className="Constructor-deleteIngredient"
           style={{ float: 'right' }}
           onClick={() => this.handleDeleteIngredientClick(ingt.id)}
         >

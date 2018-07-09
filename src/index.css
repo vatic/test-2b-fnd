@@ -19,6 +19,22 @@ body {
   cursor: pointer;
 }
 
+.ui.segment.Constructor-currentIngredient {
+  display: table;
+  width: 100%;
+}
+
+.Constructor-currentIngredient ui.button.Constructor-deleteIngredient {
+  float: right;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.Constructor-currentIngredient p {
+  display: table-cell;
+  vertical-align: middle;
+}
+
 .List-enabledPizza, .List-disabledPizza {
   min-height: 70px;
   height: 70px;
