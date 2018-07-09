@@ -4,16 +4,16 @@ import { Button, Grid, Menu } from 'semantic-ui-react';
 // import history from '../history';
 
 export default class TopMenu extends React.Component {
-  componentDidMount() {
-    // console.log('top props', this.props);
+  componentWillMount() {
+    this.props.me(this.props.accessToken);
   }
 
   componentWillReceiveProps(nextProps) {
     const { accessToken, deleteToken, history } = nextProps;
-    if (accessToken || accessToken === '') {
-      deleteToken().run();
-      history.push('/');
-    }
+    // if (accessToken || accessToken === '') {
+    //   deleteToken().run();
+    //   history.push('/');
+    // }
   }
 
   render() {

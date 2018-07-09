@@ -31,6 +31,16 @@ export const getPizzas = offset => ({
   extraParams: offset,
 });
 
+export const getPizzasByUser = offset => ({
+  API_CALL: {
+    endpoint: `${config.ENDPOINTS.PIZZAS_BY_USER}?offset=${offset || 0}`,
+    method: 'GET',
+    types: [PIZZAS_REQUEST, PIZZAS_SUCCESS, PIZZAS_FAILURE],
+    headers: { Authorization: `Bearer ${getToken().run()}` },
+  },
+  extraParams: offset,
+});
+
 export const getTotal = () => ({
   API_CALL: {
     endpoint: config.ENDPOINTS.TOTAL,

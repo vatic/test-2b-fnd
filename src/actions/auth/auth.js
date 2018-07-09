@@ -8,6 +8,19 @@ export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 export const LOGOUT_REQUEST = 'LOGOUT_REQUEST';
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 export const LOGOUT_FAILURE = 'LOGOUT_FAILURE';
+// GET /me
+export const ME_REQUEST = 'ME_REQUEST';
+export const ME_SUCCESS = 'ME_SUCCESS';
+export const ME_FAILURE = 'ME_FAILURE';
+
+export const me = token => ({
+  API_CALL: {
+    endpoint: config.ENDPOINTS.ME,
+    method: 'GET',
+    types: [ME_REQUEST, ME_SUCCESS, ME_FAILURE],
+    headers: { Authorization: `Bearer ${token}` },
+  },
+});
 
 export const login = (username, password) => ({
   API_CALL: {
