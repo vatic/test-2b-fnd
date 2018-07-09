@@ -106,6 +106,7 @@ export const enablePizza = id => ({
 export const addPizzaEpic = action$ => (
   action$.pipe(
     ofType(ADD_PIZZA_SUCCESS),
+    mapTo(getTotalByUser()),
     mapTo(getPizzasByUser()),
   )
 );

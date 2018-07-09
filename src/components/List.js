@@ -67,7 +67,8 @@ const renderActions = (props, p) => {
 };
 
 const renderRows = (props) => {
-  const { result, myResult, admin } = props.list;
+  const { admin } = props;
+  const { result, myResult } = props.list;
   const { enablePizza, disablePizza } = props;
   let pizzas = [];
   if (admin) {
