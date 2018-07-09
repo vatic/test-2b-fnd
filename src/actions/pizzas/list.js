@@ -9,6 +9,14 @@ export const TOTAL_REQUEST = 'TOTAL_REQUEST';
 export const TOTAL_SUCCESS = 'TOTAL_SUCCESS';
 export const TOTAL_FAILURE = 'TOTAL_FAILURE';
 
+export const MY_PIZZAS_REQUEST = 'PIZZAS_REQUEST';
+export const MY_PIZZAS_SUCCESS = 'PIZZAS_SUCCESS';
+export const MY_PIZZAS_FAILURE = 'PIZZAS_FAILURE';
+
+export const MY_TOTAL_REQUEST = 'TOTAL_REQUEST';
+export const MY_TOTAL_SUCCESS = 'TOTAL_SUCCESS';
+export const MY_TOTAL_FAILURE = 'TOTAL_FAILURE';
+
 export const ADD_PIZZA_REQUEST = 'ADD_PIZZA_REQUEST';
 export const ADD_PIZZA_SUCCESS = 'ADD_PIZZA_SUCCESS';
 export const ADD_PIZZA_FAILURE = 'ADD_PIZZA_FAILURE';
@@ -35,7 +43,7 @@ export const getPizzasByUser = offset => ({
   API_CALL: {
     endpoint: `${config.ENDPOINTS.PIZZAS_BY_USER}?offset=${offset || 0}`,
     method: 'GET',
-    types: [PIZZAS_REQUEST, PIZZAS_SUCCESS, PIZZAS_FAILURE],
+    types: [MY_PIZZAS_REQUEST, MY_PIZZAS_SUCCESS, MY_PIZZAS_FAILURE],
     headers: { Authorization: `Bearer ${getToken().run()}` },
   },
   extraParams: offset,
@@ -46,6 +54,15 @@ export const getTotal = () => ({
     endpoint: config.ENDPOINTS.TOTAL,
     method: 'GET',
     types: [TOTAL_REQUEST, TOTAL_SUCCESS, TOTAL_FAILURE],
+    headers: { Authorization: `Bearer ${getToken().run()}` },
+  },
+});
+
+export const getTotalByUser = () => ({
+  API_CALL: {
+    endpoint: config.ENDPOINTS.TOTAL_BY_USER,
+    method: 'GET',
+    types: [MY_TOTAL_REQUEST, MY_TOTAL_SUCCESS, MY_TOTAL_FAILURE],
     headers: { Authorization: `Bearer ${getToken().run()}` },
   },
 });

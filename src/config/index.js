@@ -11,6 +11,7 @@ const config = {
     LOGOUT: `${API_ROOT_NODE}/logout`,
     ME: `${API_ROOT_NODE}/me`,
     TOTAL: `${API_ROOT_NODE}/pizzas/count`,
+    TOTAL_BY_USER: `${API_ROOT_NODE}/pizzas/count/user`,
     PIZZAS: `${API_ROOT_NODE}/pizzas`,
     PIZZAS_BY_USER: `${API_ROOT_NODE}/pizzas/user`,
     PIZZA: id => `${API_ROOT_NODE}/pizzas/${id}`,

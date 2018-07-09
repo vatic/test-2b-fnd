@@ -1,6 +1,8 @@
 import React from 'react';
 import 'semantic-ui-css/semantic.min.css';
-import { Button, Card, Grid, Input, Segment } from 'semantic-ui-react';
+import {
+ Button, Card, Grid, Input, Segment 
+} from 'semantic-ui-react';
 import InfoMessage from './InfoMessage';
 
 export default class Constructor extends React.Component {
@@ -17,9 +19,25 @@ export default class Constructor extends React.Component {
   }
 
   componentWillMount() {
+    const { getIngredients, getTypes } = this.props;
     this.colors = ['red', 'orange', 'yellow', 'olive', 'green', 'teal', 'blue', 'violet'];
-    this.props.getIngredients(0);
-    this.props.getTypes();
+    getIngredients(0);
+    getTypes();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { history, add } = this.props;
+    console.dir(nextProps.add.status);
+    console.dir(add.status);
+    const { status } = nextProps.add;
+    if (!add.status && status) {
+      console.log('must change');
+      this.setState = {
+        currentTypeId: 1,
+        currentPizza: { name: '', ingredients: [] },
+      };
+      history.push('/bo');
+    }
   }
 
   componentWillUnmount() {
@@ -29,19 +47,6 @@ export default class Constructor extends React.Component {
     };
   }
 
-  componentWillReceiveProps(nextProps) {
-    console.dir(nextProps.add.status);
-    console.dir(this.props.add.status);
-    const { status } = nextProps.add;
-    if (!this.props.add.status && status) {
-      console.log('must change');
-      this.setState = {
-        currentTypeId: 1,
-        currentPizza: { name: '', ingredients: [] },
-      };
-      this.props.history.push('/bo');
-    }
-  }
 
   groupByKey(arr, key) {
     const arrO = [...new Set(arr.map(o => o[key]))].map(k => ({ [k]: arr.filter(o => o[key] === k) }));
@@ -62,8 +67,10 @@ export default class Constructor extends React.Component {
   }
 
   handleSubmit() {
-    const forSubmit = { name: this.state.currentPizza.name, ids: this.state.currentPizza.ingredients.map(i => i.id) };
-    this.props.addPizza(forSubmit);
+    const { currentPizza } = this.stete;
+    const { addPizza } = this.props;
+    const forSubmit = { name: currentPizza.name, ids: currentPizza.ingredients.map(i => i.id) };
+    addPizza(forSubmit);
     this.setState = {
       currentTypeId: 1,
       currentPizza: { name: '', ingredients: [] },
@@ -111,11 +118,13 @@ export default class Constructor extends React.Component {
   render() {
     console.log(this.state);
     console.log(this.props);
-    const types = this.props.typesList.result;
-    const ingredients = this.groupByKey(this.props.list.result, 'type_id');
+    const { currentPizza, currentTypeId } = this.state;
+    const { list, typesList } = this.props;
+    const types = typesList.result;
+    const ingredients = this.groupByKey(list.result, 'type_id');
     let selectedIngredients = [];
     if (types && types.length > 0) {
-      selectedIngredients = ingredients[this.state.currentTypeId] || [];
+      selectedIngredients = ingredients[currentTypeId] || [];
     }
     return (
       <Segment className="Constructor-wrapper">
@@ -133,20 +142,20 @@ export default class Constructor extends React.Component {
               <Input
                 fluid
                 placeholder="Наименование..."
-                value={this.state.currentPizza.name}
+                value={currentPizza.name}
                 onChange={this.handleNameChange}
               />
               <Segment.Group>
-                {this.renderIngredients(this.state.currentPizza.ingredients)}
+                {this.renderIngredients(currentPizza.ingredients)}
               </Segment.Group>
               <Card
-                header={this.state.currentPizza.name}
-                description={`Состав: ${this.state.currentPizza.ingredients.map(i => i.name).join(', ')}`}
+                header={currentPizza.name}
+                description={`Состав: ${currentPizza.ingredients.map(i => i.name).join(', ')}`}
                 meta="320г."
               />
               <Button
                 color="red"
-                disabled={!(this.state.currentPizza.name && this.state.currentPizza.ingredients.length > 0)}
+                disabled={!(currentPizza.name && currentPizza.ingredients.length > 0)}
                 onClick={() => this.handleSubmit()}
               >
                 Сохранить

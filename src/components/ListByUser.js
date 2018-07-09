@@ -7,8 +7,8 @@ import List from './List';
 export default class BackOffice extends React.Component {
   componentWillMount() {
     this.setState({ currentAddInputText: '' });
-    this.props.getPizzas(0);
-    this.props.getTotal();
+    this.props.getPizzasByUser(0);
+    this.props.getTotalByUser();
   }
 
   componentWillReceiveProps(nextProps) {
