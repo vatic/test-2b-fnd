@@ -41,7 +41,10 @@ export const getPizzas = offset => ({
   extraParams: offset,
 });
 
-export const getPizzasByUser = offset => ({
+export const getPizzasByUser = offset => {
+  console.log(localStorage);
+  console.log(`Bearer ${getToken().run()}`);
+  return ({
   API_CALL: {
     endpoint: `${config.ENDPOINTS.PIZZAS_BY_USER}?offset=${offset || 0}`,
     method: 'GET',
@@ -49,7 +52,7 @@ export const getPizzasByUser = offset => ({
     headers: { Authorization: `Bearer ${getToken().run()}` },
   },
   extraParams: offset,
-});
+})};
 
 export const getTotal = () => ({
   API_CALL: {

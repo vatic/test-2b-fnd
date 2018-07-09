@@ -82,7 +82,7 @@ const renderRows = (props) => {
       className={(p.activity === 1) ? 'List-enabledPizza' : 'List-disabledPizza'}
     >
       <Table.Cell>
-        {`${p.id} ${p.name}`}
+        {p.name}
       </Table.Cell>
       <Table.Cell className="List-Column-Ingredients">
         {p.ingredients}
