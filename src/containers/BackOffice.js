@@ -6,7 +6,9 @@ import BackOffice from '../components/BackOffice';
 
 const mapStateToProps = (state) => {
   const { add, list } = state.pizzas;
+  const { auth } = state;
   return {
+    auth,
     list,
     add,
   };

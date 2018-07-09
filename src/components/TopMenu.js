@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { Button, Grid, Menu } from 'semantic-ui-react';
 // import history from '../history';
 
@@ -17,13 +17,17 @@ export default class TopMenu extends React.Component {
   }
 
   render() {
-    console.log('topmenu: ', this.props)
-    const { accessToken, loggedIn, logout, user } = this.props;
+    const {
+      accessToken, loggedIn, logout, user,
+    } = this.props;
+    if (!loggedIn) {
+      return (
+        <Redirect to="/login" />
+      );
+    }
     return (
       <Grid centered>
         <Grid.Row>
-          {loggedIn
-          && (
           <Menu>
             <Grid.Column>
               <Menu.Item>
@@ -43,6 +47,8 @@ export default class TopMenu extends React.Component {
                 </Button>
               </Menu.Item>
             </Grid.Column>
+            {user.role === 'admin'
+            && (
             <Grid.Column>
               <Menu.Item>
                 <Button primary>
@@ -52,6 +58,7 @@ export default class TopMenu extends React.Component {
                 </Button>
               </Menu.Item>
             </Grid.Column>
+            )}
             <Grid.Column>
               <Menu.Item>
                 <Button primary onClick={() => logout(accessToken)}>
@@ -67,19 +74,6 @@ export default class TopMenu extends React.Component {
               </Menu.Item>
             </Grid.Column>
           </Menu>
-          )}
-          {!loggedIn
-            && (
-            <Menu>
-              <Grid.Column>
-                <Menu.Item>
-                  <Link to="/login" style={{ color: '#fff' }}>
-                    Войти
-                  </Link>
-                </Menu.Item>
-              </Grid.Column>
-            </Menu>
-            )}
         </Grid.Row>
       </Grid>
     );

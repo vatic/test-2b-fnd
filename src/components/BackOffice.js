@@ -22,22 +22,22 @@ export default class BackOffice extends React.Component {
   }
 
   render() {
-    const { history, list, enablePizza, disablePizza } = this.props;
-    if (list.result.code > 399) {
+    const { auth, history, list, enablePizza, disablePizza } = this.props;
+    if (auth.user.role !== 'admin' || list.result.code > 399) {
       return (
-        <Container>
-          <TopMenu history={history} />
-          <List
-            admin
-            list={list}
-            enablePizza={enablePizza}
-            disablePizza={disablePizza}
-          />
-        </Container>
+        <Redirect to="/" />
       );
     }
     return (
-      <Redirect to="/" />
+      <Container>
+        <TopMenu history={history} />
+        <List
+          admin
+          list={list}
+          enablePizza={enablePizza}
+          disablePizza={disablePizza}
+        />
+      </Container>
     );
   }
 }

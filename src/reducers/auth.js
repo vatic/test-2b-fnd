@@ -1,7 +1,7 @@
 import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT_FAILURE, LOGOUT_REQUEST, LOGOUT_SUCCESS, ME_FAILURE, ME_REQUEST, ME_SUCCESS } from '../actions/auth/auth';
 
 const initialState = {
-  loggedIn: localStorage.token !== undefined || localStorage.token !== '',
+  loggedIn: localStorage.token !== undefined && localStorage.token !== '',
   tokenType: 'Bearer',
   accessToken: localStorage.token || '',
   expiresIn: '',
@@ -36,6 +36,7 @@ export function auth(state = initialState, action) {
         isFetching: true,
       });
     case LOGOUT_SUCCESS:
+      localStorage.clear();
       return Object.assign({}, state, {
         isFetching: false,
         loggedIn: false,

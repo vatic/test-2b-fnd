@@ -11,14 +11,14 @@ export default class BackOffice extends React.Component {
     this.props.getTotalByUser();
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { error } = nextProps.list;
-    const { history, deleteToken } = nextProps;
-    if (error !== null && !error.ok) {
-      deleteToken().run();
-      history.push('/login');
-    }
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   const { error } = nextProps.list;
+  //   const { history, deleteToken } = nextProps;
+  //   if (error !== null && !error.ok) {
+  //     deleteToken().run();
+  //     history.push('/login');
+  //   }
+  // }
 
   render() {
     return (
