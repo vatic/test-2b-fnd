@@ -1,6 +1,8 @@
 import React from 'react';
 import 'semantic-ui-css/semantic.min.css';
-import { Button, Card, Grid, Input, Segment } from 'semantic-ui-react';
+import {
+ Button, Card, Grid, Input, Segment 
+} from 'semantic-ui-react';
 import InfoMessage from './InfoMessage';
 
 export default class Constructor extends React.Component {
@@ -12,6 +14,7 @@ export default class Constructor extends React.Component {
     };
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleIngredientClick = this.handleIngredientClick.bind(this);
+    this.handleDeleteIngredientClick = this.handleDeleteIngredientClick.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleTypeChange = this.handleTypeChange.bind(this);
   }
@@ -61,7 +64,26 @@ export default class Constructor extends React.Component {
 
   handleIngredientClick(ingredient) {
     const current = this.state.currentPizza;
-    this.setState({ currentPizza: { name: current.name, ingredients: [...current.ingredients, ingredient] } });
+    this.setState({
+      currentTypeId: this.state.currentTypeId,
+      currentPizza: {
+        name: current.name,
+        ingredients: [...new Set([...current.ingredients, ingredient])],
+      },
+    });
+  }
+
+  handleDeleteIngredientClick(id) {
+    const current = this.state.currentPizza;
+    const index = current.ingredients.findIndex((e, i, self) => e.id === id);
+    console.log('index: ', index);
+    this.setState({
+      currentTypeId: this.state.currentTypeId,
+      currentPizza: {
+        name: current.name,
+        ingredients: [...current.ingredients.slice(0, index), ...current.ingredients.slice(index + 1)],
+      },
+    });
   }
 
   handleSubmit() {
@@ -85,6 +107,7 @@ export default class Constructor extends React.Component {
     ));
   }
 
+
   renderIngredients(ingredients) {
     return ingredients.map(ingt => (
       <Segment
@@ -93,6 +116,20 @@ export default class Constructor extends React.Component {
         onClick={() => this.handleIngredientClick(ingt)}
       >
         {ingt.name}
+      </Segment>
+    ));
+  }
+
+  renderCurrentIngredients(ingredients) {
+    return ingredients.map(ingt => (
+      <Segment key={ingt.id} className="Constructor-ingredient">
+        {ingt.name}
+        <Button
+          style={{ float: 'right' }}
+          onClick={() => this.handleDeleteIngredientClick(ingt.id)}
+        >
+          &mdash;
+        </Button>
       </Segment>
     ));
   }
@@ -111,9 +148,8 @@ export default class Constructor extends React.Component {
 
 
   render() {
-    console.log(this.state);
-    console.log(this.props);
     const { currentPizza, currentTypeId } = this.state;
+    console.dir(currentPizza.ingredients);
     const { list, typesList } = this.props;
     const types = typesList.result;
     const ingredients = this.groupByKey(list.result, 'type_id');
@@ -141,7 +177,7 @@ export default class Constructor extends React.Component {
                 onChange={this.handleNameChange}
               />
               <Segment.Group>
-                {this.renderIngredients(currentPizza.ingredients)}
+                {this.renderCurrentIngredients(currentPizza.ingredients)}
               </Segment.Group>
               <Card
                 header={currentPizza.name}

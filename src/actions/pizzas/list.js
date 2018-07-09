@@ -1,3 +1,5 @@
+import { ofType } from 'redux-observable';
+import { mapTo } from 'rxjs/operators';
 import config from '../../config';
 import getToken from '../auth/getToken';
 
@@ -100,3 +102,10 @@ export const enablePizza = id => ({
     nextActions: [getPizzas],
   },
 });
+
+export const addPizzaEpic = (action$) => {
+  console.log(action$);
+  return action$.pipe(
+  ofType(ADD_PIZZA_SUCCESS),
+  mapTo(getPizzasByUser()),
+)};
