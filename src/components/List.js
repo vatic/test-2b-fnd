@@ -116,13 +116,15 @@ const tableHeader = admin => (
 );
 
 const tableFooter = (props) => {
-  const { admin, total, myTotal } = props.list;
+  const { list: { total, myTotal } } = props;
+  const { admin } = props;
   let len = 0;
   if (admin) {
     len = total;
   } else {
     len = myTotal;
   }
+  console.log('len: ', len);
   return (
     <Table.Footer>
       <Table.Row>
