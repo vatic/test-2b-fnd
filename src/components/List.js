@@ -124,7 +124,6 @@ const tableFooter = (props) => {
   } else {
     len = myTotal;
   }
-  console.log('len: ', len);
   return (
     <Table.Footer>
       <Table.Row>

@@ -49,7 +49,7 @@ export const getPizzasByUser = offset => {
     endpoint: `${config.ENDPOINTS.PIZZAS_BY_USER}?offset=${offset || 0}`,
     method: 'GET',
     types: [MY_PIZZAS_REQUEST, MY_PIZZAS_SUCCESS, MY_PIZZAS_FAILURE],
-    headers: { Authorization: `Bearer ${getToken().run()}` },
+    headers: { Authorization: `Bearer ${localStorage.token}` },
   },
   extraParams: offset,
 })};
@@ -69,6 +69,7 @@ export const getTotalByUser = () => ({
     method: 'GET',
     types: [MY_TOTAL_REQUEST, MY_TOTAL_SUCCESS, MY_TOTAL_FAILURE],
     headers: { Authorization: `Bearer ${getToken().run()}` },
+    nextActions: [getPizzasByUser],
   },
 });
 
@@ -110,6 +111,6 @@ export const addPizzaEpic = action$ => (
   action$.pipe(
     ofType(ADD_PIZZA_SUCCESS),
     mapTo(getTotalByUser()),
-    mapTo(getPizzasByUser()),
+    // mapTo(getPizzasByUser()),
   )
 );
