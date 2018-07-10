@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Grid, Header, Icon, Menu, Table } from 'semantic-ui-react';
 
 const renderPagination = (props) => {
-  const { currentOffset, total, myTotal } = props.list;
+  const { list: { currentOffset, total, myTotal } } = props;
   const { admin, getPizzas } = props;
   let len = 0;
   if (admin) {
@@ -69,7 +69,6 @@ const renderActions = (props, p) => {
 const renderRows = (props) => {
   const { admin } = props;
   const { result, myResult } = props.list;
-  const { enablePizza, disablePizza } = props;
   let pizzas = [];
   if (admin) {
     pizzas = result;

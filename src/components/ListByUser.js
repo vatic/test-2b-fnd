@@ -6,7 +6,6 @@ import List from './List';
 
 export default class BackOffice extends React.Component {
   componentWillMount() {
-    this.setState({ currentAddInputText: '' });
     this.props.getPizzasByUser(0);
     this.props.getTotalByUser();
   }

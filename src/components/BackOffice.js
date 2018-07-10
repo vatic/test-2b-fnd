@@ -7,9 +7,9 @@ import List from './List';
 
 export default class BackOffice extends React.Component {
   componentWillMount() {
-    this.setState({ currentAddInputText: '' });
-    this.props.getPizzas(0);
-    this.props.getTotal();
+    const { getPizzas, getTotal } = this.props;
+    getPizzas(0);
+    getTotal();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -22,7 +22,7 @@ export default class BackOffice extends React.Component {
   }
 
   render() {
-    const { auth, history, list, enablePizza, disablePizza } = this.props;
+    const { auth, history, list, getPizzas, enablePizza, disablePizza } = this.props;
     if (auth.user.role !== 'admin' || list.result.code > 399) {
       return (
         <Redirect to="/" />
@@ -34,6 +34,7 @@ export default class BackOffice extends React.Component {
         <List
           admin
           list={list}
+          getPizzas={getPizzas}
           enablePizza={enablePizza}
           disablePizza={disablePizza}
         />
